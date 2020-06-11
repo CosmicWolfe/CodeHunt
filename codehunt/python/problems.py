@@ -23,6 +23,11 @@ class Problem(object):
         self.tags = tags
 
 problems = {}
+converted = {}
+
+def ConvertProblems():
+    for index, problem in problems.items():
+        converted[index] = problem.__dict__
 
 def RefreshProblems():
    url = "https://codeforces.com/api/problemset.problems"
@@ -46,13 +51,12 @@ def RefreshProblems():
        solvedCount = problemStats["solvedCount"]
        problems[index].solvedCount = solvedCount
 
-def ConvertProblems():
-    for index, problem in problems.items():
-        problems[index] = problem.__dict__
+   ConvertProblems()
 
 @app.route("/problems/<username>")
 def getProblems(username):
-     RefreshProblems()
+     for index, problem in converted.items():
+         problem["solvedByUser"] = False
 
      url = "https://codeforces.com/api/user.status?handle=" + username
 
@@ -62,16 +66,17 @@ def getProblems(username):
          problem = submission["problem"]
          contestId = str(problem["contestId"]) if "contestId" in problem else "X"
          index = contestId + problem["index"]
-         if (submission["verdict"] == "OK" and index in problems):
-	           problems[index].solvedByUser = True
+         if (submission["verdict"] == "OK" and index in converted):
+	           converted[index]["solvedByUser"] = True
 
-     ConvertProblems()
-
-     return json.dumps(problems)
+     return json.dumps(converted)
 
 @app.route("/submissions/<username>")
 def getSubmissions(username):
-    return jsonify({'text':'Hello World!'})
+    url = "https://codeforces.com/api/user.status?handle=" + username
+    html = requests.get(url)
+    return html
   
 if __name__ == '__main__':
+   RefreshProblems()
    app.run(port=5002)
