@@ -18,7 +18,7 @@ export class AppComponent {
 
   sayHi() {
     this.title = 'po';
-    this.httpClient.get('http://127.0.0.1:5002/').subscribe(data => {
+    this.httpClient.get('http://127.0.0.1:5002/problems/jt3698').subscribe(data => {
       this.serverData = data as JSON;
       console.log(this.serverData);
       this.title = JSON.stringify(this.serverData);

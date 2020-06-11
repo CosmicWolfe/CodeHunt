@@ -3,82 +3,75 @@ from flask_cors import CORS, cross_origin
 from flask_restful import Resource, Api
 from json import dumps
 from flask_jsonpify import jsonify
+import requests
+import re
+from urllib.parse import urljoin
+import json
 
 app = Flask(__name__)
 api = Api(app)
 
 CORS(app)
 
-@app.route("/po/")
-def helldo():
-    return jsonify({'text':'Heldlo World!'})
+class Problem(object):
+    def __init__(self, index, name, rating, solvedByUser, solvedCount = 0, tags = []):
+        self.index = index
+        self.name = name
+        self.rating = rating
+        self.solvedByUser = solvedByUser
+        self.solvedCount = solvedCount
+        self.tags = tags
 
-@app.route("/")
-def hello():
+problems = {}
+
+def RefreshProblems():
+   url = "https://codeforces.com/api/problemset.problems"
+   html = requests.get(url)
+   lists = json.loads(html.text)
+
+   for problem in lists["result"]["problems"]:
+       contestId = str(problem["contestId"]) if "contestId" in problem else "X"
+       index = contestId + problem["index"]
+       name = problem["name"]
+       rating = problem["rating"] if "rating" in problem else 0
+       solvedByUser = False
+       solvedCount = 0
+       tags = problem["tags"]
+
+       problems[index] = Problem(index, name, rating, solvedCount, tags)
+
+   for problemStats in lists["result"]["problemStatistics"]:
+       contestId = str(problemStats["contestId"]) if "contestId" in problemStats else "X"
+       index = contestId + problemStats["index"]
+       solvedCount = problemStats["solvedCount"]
+       problems[index].solvedCount = solvedCount
+
+def ConvertProblems():
+    for index, problem in problems.items():
+        problems[index] = problem.__dict__
+
+@app.route("/problems/<username>")
+def getProblems(username):
+     RefreshProblems()
+
+     url = "https://codeforces.com/api/user.status?handle=" + username
+
+     html = requests.get(url)
+     submissions = json.loads(html.text)
+     for submission in submissions["result"]:
+         problem = submission["problem"]
+         contestId = str(problem["contestId"]) if "contestId" in problem else "X"
+         index = contestId + problem["index"]
+         if (submission["verdict"] == "OK" and index in problems):
+	           problems[index].solvedByUser = True
+
+     ConvertProblems()
+
+     return json.dumps(problems)
+
+@app.route("/submissions/<username>")
+def getSubmissions(username):
     return jsonify({'text':'Hello World!'})
-
-
-
-class Employees(Resource):
-    def get(self):
-        return {'employees': [{'id':1, 'name':'Balram'},{'id':2, 'name':'Tom'}]} 
-
-class Employees_Name(Resource):
-    def get(self, employee_id):
-        print('Employee id:' + employee_id)
-        result = {'data': {'id':1, 'name':'Balram'}}
-        return jsonify(result)       
-
-
-api.add_resource(Employees, '/employees') # Route_1
-api.add_resource(Employees_Name, '/employees/<employee_id>') # Route_3
-
-
+  
 if __name__ == '__main__':
    app.run(port=5002)
-
-# for problem in problemList[:50]:
-# 	print(problem.index)
-
-# for problemStat in lists["result"]["problem"]:
-# 	index = problem["index"]
-# 	name = problem["name"]
-# 	rating = problem["rating"]
-# 	solvedCount = 0
-
-# 	problems[index] = Problem(index, name, raring, solvedCount)
-
-# {'contestId': 2, 'index': 'A', 'name': 'Winner', 'type': 'PROGRAMMING', 'rating': 1500, 
-# 'tags': ['hashing', 'implementation']}, 
-
-# # Make soup
-# soup = BeautifulSoup(html.text, "html.parser")
-
-# # Get all links
-# links = soup.findAll("a")
-
-# # Get all problem references
-# problems = {}
-# while (True):
-# 	for link in links:
-# 		# Get the reference
-# 		ref = link["href"]
-# 		if (re.match("/problemset/problem/*", ref)):
-# 			problems[ref] = 1
-
-# 	# Get to next page
-# 	arrows = soup.findAll("a", "arrow")
-# 	nextPageLink = ""
-# 	for arrow in arrows:
-# 		if (arrow.text == "→"):
-# 			nextPageLink = arrow["href"]
-
-# 	if (nextPageLink == ""): break
-	
-# 	url = urljoin(url, nextPageLink)
-# 	html = requests.get(url)
-# 	soup = BeautifulSoup(html.text, "html.parser")
-# 	links = soup.findAll("a")
-
-# for p in problems:
-#  	print(p)
