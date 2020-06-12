@@ -4,7 +4,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" class="extendWidth">
         <div fxLayoutGap="16px">
             <input mat-input style="width: 250px !important;" [(ngModel)]="username" placeholder="Enter your Codeforces username">
-            <button mat-raised-button>View Questions</button>
+            <button mat-raised-button (click)="submitUsername()">View Questions</button>
         </div>
         <div>filter</div>
     </div>

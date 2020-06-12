@@ -1,8 +1,8 @@
-<table mat-table [dataSource]="questionsTest">
+<table mat-table [dataSource]="questions">
     <!-- Problem ID Column -->
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Problem ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.contestId}}{{element.index}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.index}} </td>
     </ng-container>
 
     <!-- Name Column -->
@@ -14,13 +14,13 @@
     <!-- Solved Count Column -->
     <ng-container matColumnDef="solvedBy">
         <th mat-header-cell *matHeaderCellDef> Solved By </th>
-        <td mat-cell *matCellDef="let element"> {{element.solvedBy}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.solvedCount}} </td>
     </ng-container>
 
     <!-- Difficulty Column -->
     <ng-container matColumnDef="difficulty">
         <th mat-header-cell *matHeaderCellDef> Difficulty </th>
-        <td mat-cell *matCellDef="let element"> {{element.difficulty}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

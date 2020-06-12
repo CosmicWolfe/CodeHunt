@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, SimpleChange, Input } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 
 @Component({
@@ -6,9 +6,11 @@ import { MatTableModule, MatTable } from '@angular/material/table';
   templateUrl: './questions-table.component.html',
   styleUrls: ['./questions-table.component.scss']
 })
+
 export class QuestionsTableComponent implements OnInit {
   // will take as input user handle, and filters
-  @Input('questions') questions: [];
+  @Input('questions') questions : []
+
   questionsTest = [
     {
       contestId: 4,
@@ -31,6 +33,10 @@ export class QuestionsTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes : SimpleChange): void {
+    console.log(changes);
   }
 
 }
