@@ -13,7 +13,22 @@ import { HttpClient } from '@angular/common/http';
 export class BodyComponent implements OnInit {
   username: String;
   userSubmissions: [];
-  userQuestions = [];
+  userQuestions = [
+    {
+      contestId: 4,
+      index: '4A',
+      name: 'Watermelon',
+      solvedCount: 12345,
+      rating: 800
+    },
+    {
+      contestId: 5,
+      index: 'B',
+      name: 'Orange',
+      solvedCount: 123456,
+      rating: 8000
+    }
+  ];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -23,10 +38,11 @@ export class BodyComponent implements OnInit {
 
   public submitUsername() {
     this.httpClient.get('http://127.0.0.1:5002/problems/' + this.username).subscribe(data => {
-    
+      let questions = [];
       for (let key in data) {
-        this.userQuestions.push(data[key]);
-      }console.log(this.userQuestions);
+        questions.push(data[key]);
+      }
+      this.userQuestions = questions;
     })
     // get user submissions from python, then filter
     this.filterProblems();
