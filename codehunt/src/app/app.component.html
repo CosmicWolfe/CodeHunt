@@ -1,7 +1,6 @@
-<app-header></app-header>
-<app-body></app-body>
-<!--footer ? -->
-<button (click)="sayHi()">
-  clickHi : {{title}}
-</button>
+<div fxLayout="column" fxLayoutAlign="start center">
+  <app-header class="extendWidth"></app-header>
+  <app-body class="extendWidth"></app-body>
+  <!--footer ? -->
+</div>
 <router-outlet></router-outlet>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatTableModule, MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-questions-table',
@@ -7,6 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionsTableComponent implements OnInit {
   // will take as input user handle, and filters
+  @Input('questions') questions: [];
+  questionsTest = [
+    {
+      contestId: 4,
+      index: 'A',
+      name: 'Watermelon',
+      solvedBy: 12345,
+      difficulty: 800
+    },
+    {
+      contestId: 5,
+      index: 'B',
+      name: 'Orange',
+      solvedBy: 123456,
+      difficulty: 8000
+    }
+  ];
+
+  displayedColumns: string[] = ['id', 'name', 'solvedBy', 'difficulty'];
 
   constructor() { }
 

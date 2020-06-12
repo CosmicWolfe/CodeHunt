@@ -1,4 +1,26 @@
 <!--user selection and filter, maybe no need for component-->
-<input>
-<app-questions-table></app-questions-table>
+
+<div fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="extendWidth">
+        <div fxLayoutGap="16px">
+            <input mat-input style="width: 250px !important;" [(ngModel)]="username" placeholder="Enter your Codeforces username">
+            <button mat-raised-button>View Questions</button>
+        </div>
+        <div>filter</div>
+    </div>
+    <!--div fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxLayout="row" fxLayoutGap="16px" style="width: auto;">
+            <mat-form-field style="width: 250px;">
+                <mat-label>Username</mat-label>
+                <input mat-input style="width: 250px;" [(ngModel)]="username" placeholder="Enter your Codeforces username">
+            </mat-form-field>
+            <button mat-raised-button (click)="submitUsername">View</button>
+        </div>
+        <div>
+            <p>filters here</p>
+        </div>
+    </div-->
+    <app-questions-table class="extendWidth" [questions]="userQuestions"></app-questions-table>
+</div>
+
 <!--other cool stuff maybe-->
