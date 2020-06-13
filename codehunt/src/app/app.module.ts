@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { QuestionFiltersComponent } from './question-filters/question-filters.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { QuestionFiltersComponent } from './question-filters/question-filters.co
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MatFormFieldModule,
     MatDividerModule

@@ -1,17 +1,38 @@
 <div fxLayout="column" fxLayoutAlign="start center">
   <!-- Min and Max Rating Input -->
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-      <div fxLayoutGap="16px">
-        <p>Minimum Rating:</p>
-        <input mat-input style="width: 60px !important;"
-         [(ngModel)]="currentFilters.minRating" placeholder="800">
-      </div>
+      
+    <form>
+      <mat-form-field>
+        <mat-label>Minimum Difficulty</mat-label>
+        <input matInput [formControl]="difficultyFormControl" [errorStateMatcher]="matcher"
+                [(ngModel)]="currentFilters.minRating" placeholder="800">
+        <mat-error *ngIf="difficultyFormControl.hasError('min') || difficultyFormControl.hasError('max')">
+          Please enter a valid difficulty
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <form>
+      <mat-form-field>
+        <mat-label>Maximum Difficulty</mat-label>
+        <input matInput [formControl]="difficultyFormControl" [errorStateMatcher]="matcher"
+                [(ngModel)]="currentFilters.maxRating" placeholder="3500">
+        <mat-error *ngIf="difficultyFormControl.hasError('min') || difficultyFormControl.hasError('max')">
+          Please enter a valid difficulty
+        </mat-error>
+      </mat-form-field>
+    </form>
+      
+
+    <p>Minimum Rating:</p>
+    <input mat-input style="width: 60px !important;"
+      [(ngModel)]="currentFilters.minRating" placeholder="800">
+     
     <div fxLayoutGap="16px">
       <p>Maximum Rating:</p>
       <input mat-input style="width: 60px !important;"
        [(ngModel)]="currentFilters.maxRating" placeholder="3500">
     </div>
-  </div>
 
 </div>
 
