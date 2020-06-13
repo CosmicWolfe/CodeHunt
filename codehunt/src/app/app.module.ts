@@ -15,13 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
+import { QuestionFiltersComponent } from './question-filters/question-filters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     BodyComponent,
-    QuestionsTableComponent
+    QuestionsTableComponent,
+    QuestionFiltersComponent
   ],
   imports: [
     BrowserModule,

@@ -2,12 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\codehunt",
+    "\\codehunt\\python",
     "\\codehunt\\src",
     "\\codehunt\\src\\app",
+    "\\codehunt\\src\\app\\body",
+    "\\codehunt\\src\\app\\header",
+    "\\codehunt\\src\\app\\questions-table",
     "\\codehunt\\src\\assets",
-    "\\codehunt\\src\\environments",
-    "\\codehunt\\src\\python"
+    "\\codehunt\\src\\environments"
   ],
-  "SelectedNode": "\\codehunt\\src\\python",
+  "SelectedNode": "\\codehunt\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }

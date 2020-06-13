@@ -28,7 +28,7 @@ export class QuestionsTableComponent implements OnInit {
     }
   ];
 
-  displayedColumns: string[] = ['id', 'name', 'solvedBy', 'difficulty'];
+  displayedColumns: string[] = ['id', 'name', 'solvedBy', 'difficulty', 'solved'];
 
   constructor() { }
 

@@ -10,3 +10,32 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+
+declare global {
+  interface Filter {
+    minRating : number,
+    maxRating : number,
+
+    tags : string[],
+    tagsTakenByOr : boolean,
+
+    /**  
+     * 0 - All problems
+     * 1 - Not solved by user
+     * 2 - Solved by user
+     */
+    solvedByUser : number,
+
+    /**  
+     * "rating"
+     * "solvedCount" 
+     * "index"
+     */
+    sortBy : string,
+
+    ascending : boolean,
+
+    numberOfRows : number
+  }
+}
