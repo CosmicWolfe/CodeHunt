@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-question-filters',
@@ -17,6 +17,6 @@ export class QuestionFiltersComponent implements OnInit {
   }
 
   emit(): void {
-    this.filters.emit(currentFilters);
+    this.filters.emit(this.currentFilters);
   }
 }

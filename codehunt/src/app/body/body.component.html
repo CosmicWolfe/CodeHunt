@@ -6,7 +6,7 @@
             <input mat-input style="width: 250px !important;" [(ngModel)]="username" placeholder="Enter your Codeforces username">
             <button mat-raised-button (click)="submitUsername()">View Questions</button>
         </div>
-        <app-question-filters (filters)="updateFilter($event)"></app-question-filters>
+        <app-question-filters (filters)="updateFilters($event)"></app-question-filters>
     </div>
     <!--div fxLayout="row" fxLayoutAlign="space-around center">
         <div fxLayout="row" fxLayoutGap="16px" style="width: auto;">
