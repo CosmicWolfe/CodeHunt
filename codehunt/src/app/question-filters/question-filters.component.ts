@@ -5,11 +5,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './question-filters.component.html',
   styleUrls: ['./question-filters.component.scss']
 })
+
+
 export class QuestionFiltersComponent implements OnInit {
+  @Output() filters = new EventEmitter<Filter>();
+  currentFilters : Filter;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  emit(): void {
+    this.filters.emit(currentFilters);
+  }
 }

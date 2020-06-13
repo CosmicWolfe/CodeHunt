@@ -48,6 +48,10 @@ export class BodyComponent implements OnInit {
     this.filterProblems();
   }
 
+  public updateFilters(filter : Filter) {
+  
+  }
+
   private filterProblems() {
     // filters the problems according to the filters, and userSubmissions
   }
