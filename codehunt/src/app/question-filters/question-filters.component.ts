@@ -11,9 +11,18 @@ export class QuestionFiltersComponent implements OnInit {
   @Output() filters = new EventEmitter<Filter>();
   currentFilters : Filter;
 
-  constructor() { }
+  constructor() {
+    this.currentFilters = {minRating : 800, maxRating : 3500,
+                           tags : [], tagsTakenByOr : true,
+                           sortBy : "solvedCount", ascending : true,
+                           numberOfRows : 50, solvedByUser : 0}
+  }
 
   ngOnInit(): void {
+  }
+
+  submitFilters(): void {
+  
   }
 
   emit(): void {

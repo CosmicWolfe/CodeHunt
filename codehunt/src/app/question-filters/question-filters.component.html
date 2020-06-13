@@ -1,1 +1,26 @@
-<p>question-filters works!</p>
+<div fxLayout="column" fxLayoutAlign="start center">
+  <!-- Min and Max Rating Input -->
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxLayoutGap="16px">
+        <p>Minimum Rating:</p>
+        <input mat-input style="width: 60px !important;"
+         [(ngModel)]="currentFilters.minRating" placeholder="800">
+      </div>
+    <div fxLayoutGap="16px">
+      <p>Maximum Rating:</p>
+      <input mat-input style="width: 60px !important;"
+       [(ngModel)]="currentFilters.maxRating" placeholder="3500">
+    </div>
+  </div>
+
+</div>
+
+
+<form>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="currentFilters.sortBy">
+        </div>
+    </div>
+</form>
