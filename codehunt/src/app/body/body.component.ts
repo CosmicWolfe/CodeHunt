@@ -34,6 +34,7 @@ export class BodyComponent implements OnInit {
       let questions = [];
       for (let key in data) {
         questions.push(data[key]);
+        questions[questions.length - 1].tags = data[key].tags.slice(0);
         if (questions.length == 100) break;
       }
       this.userQuestions = questions;
@@ -58,9 +59,11 @@ export class BodyComponent implements OnInit {
       let questions = [];
       for (let key in data) {
         questions.push(data[key]);
+        questions[questions.length - 1].tags = data[key].tags.slice(0);
       }
       this.userQuestions = questions;
-      console.log("received userQuestions")
+      console.log("received userQuestions");
+      console.log(this.userQuestions);
       this.filterQuestions();
     });
   }
@@ -112,11 +115,11 @@ export class BodyComponent implements OnInit {
         }
       } else {
         for (let i = 0; i < filters.tags.length; ++i) {
-          console.log(filters.tags[i]);
+          /*console.log(filters.tags[i]);
           console.log("question tags");
-          console.log(question.tags);
+          console.log(question.tags);*/
           if (!question.tags.includes(filters.tags[i])) {
-            console.log("filter tag not or out");
+            //console.log("filter tag not or out");
             return false;
           }
         }
