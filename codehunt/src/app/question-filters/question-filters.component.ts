@@ -33,7 +33,7 @@ export class QuestionFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentFilters = {minRating : 800, maxRating : 3500,
-                           tags : ["PO", "POOO"], tagsTakenByOr : true,
+                           tags : [], tagsTakenByOr : true,
                            sortBy : "solvedCount", ascending : true,
                            numberOfRows : 50, solvedByUser : 0};
 
@@ -44,7 +44,7 @@ export class QuestionFiltersComponent implements OnInit {
   }
 
   submitFilters(): void {
-  
+    this.filters.emit(this.currentFilters);
   }
 
   emit(): void {
