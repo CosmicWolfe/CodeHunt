@@ -28,7 +28,9 @@ converted = {}
 def ConvertProblems():
     for index, problem in problems.items():
         converted[index] = problem.__dict__
+
         converted[index]["tags"] = problem.tags.copy()
+
 
 def RefreshProblems():
    url = "https://codeforces.com/api/problemset.problems"
@@ -42,9 +44,9 @@ def RefreshProblems():
        rating = problem["rating"] if "rating" in problem else 0
        solvedByUser = False
        solvedCount = 0
-       tags = problem["tags"]
-       
-       problems[index] = Problem(index, name, rating, solvedCount, tags)
+
+       problems[index] = Problem(index, name, rating, solvedCount)
+       problems[index].tags = problem["tags"].copy()
 
    for problemStats in lists["result"]["problemStatistics"]:
        contestId = str(problemStats["contestId"]) if "contestId" in problemStats else "X"
