@@ -38,4 +38,20 @@ declare global {
 
     numberOfRows : number
   }
+  
+  interface Question {
+    contestId: number,
+    problemsetName: string,
+    index: string,
+    name: string,
+    /**
+     * ENUM: PROGRAMMING, QUESTION
+     */
+    type: string,
+    points: number,
+    rating: number,
+    tags: string[],
+    solvedByUser: boolean,
+    solvedCount: number
+  }
 }
