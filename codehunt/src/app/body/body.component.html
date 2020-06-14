@@ -5,7 +5,7 @@
         <div fxLayoutGap="16px">
             <input mat-input style="width: 250px !important;" [(ngModel)]="username" placeholder="Enter your Codeforces username">
             <button mat-raised-button (click)="submitUsername()">View Questions</button>
-            <button mat-raised-button [isRoundButton]="true"></button>
+            <button mat-raised-button></button>
         </div>
         <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
     </div>

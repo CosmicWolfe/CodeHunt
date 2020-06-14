@@ -28,6 +28,7 @@ converted = {}
 def ConvertProblems():
     for index, problem in problems.items():
         converted[index] = problem.__dict__
+        converted[index]["tags"] = problem.tags.copy()
 
 def RefreshProblems():
    url = "https://codeforces.com/api/problemset.problems"
@@ -42,7 +43,7 @@ def RefreshProblems():
        solvedByUser = False
        solvedCount = 0
        tags = problem["tags"]
-
+       
        problems[index] = Problem(index, name, rating, solvedCount, tags)
 
    for problemStats in lists["result"]["problemStatistics"]:
@@ -68,7 +69,7 @@ def getProblems(username):
          index = contestId + problem["index"]
          if (submission["verdict"] == "OK" and index in converted):
 	           converted[index]["solvedByUser"] = True
-
+     
      return json.dumps(converted)
 
 @app.route("/submissions/<username>")
