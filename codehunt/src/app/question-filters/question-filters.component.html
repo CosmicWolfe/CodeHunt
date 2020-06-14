@@ -1,47 +1,40 @@
-<div fxLayout="column" fxLayoutAlign="start center">
-  <!-- Min and Max Rating Input -->
-      
-    <form>
+<form [formGroup]="filterForm">
+  <div fxLayout="column" fxLayoutAlign="start center">
+    <!-- Min and Max Rating Input -->
+    <div name = "Minimum Rating Input">
       <mat-form-field>
         <mat-label>Minimum Difficulty</mat-label>
-        <input matInput [formControl]="difficultyFormControl" [errorStateMatcher]="matcher"
+        <input matInput formControlName="minRating" [errorStateMatcher]="matcher" type = "number"
                 [(ngModel)]="currentFilters.minRating" placeholder="800">
-        <mat-error *ngIf="difficultyFormControl.hasError('min') || difficultyFormControl.hasError('max')">
+        <mat-error *ngIf="f.minRating.errors">
           Please enter a valid difficulty
         </mat-error>
       </mat-form-field>
-    </form>
+    </div>
 
-    <form>
+    <div name = "Maximum Rating Input">
       <mat-form-field>
         <mat-label>Maximum Difficulty</mat-label>
-        <input matInput [formControl]="difficultyFormControl" [errorStateMatcher]="matcher"
+        <input matInput formControlName="maxRating" [errorStateMatcher]="matcher"
                 [(ngModel)]="currentFilters.maxRating" placeholder="3500">
-        <mat-error *ngIf="difficultyFormControl.hasError('min') || difficultyFormControl.hasError('max')">
+        <mat-error *ngIf="f.maxRating.errors">
           Please enter a valid difficulty
         </mat-error>
       </mat-form-field>
-    </form>
-      
-
-    <p>Minimum Rating:</p>
-    <input mat-input style="width: 60px !important;"
-      [(ngModel)]="currentFilters.minRating" placeholder="800">
-     
-    <div fxLayoutGap="16px">
-      <p>Maximum Rating:</p>
-      <input mat-input style="width: 60px !important;"
-       [(ngModel)]="currentFilters.maxRating" placeholder="3500">
     </div>
 
-</div>
-
-
-<form>
-    <div class="form-group">
-        <div class="input-group">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="currentFilters.sortBy">
-        </div>
+    <div name="Tags Input" fxLayout="row wrap" fxLayoutGap="1px">
+      <button class="button" *ngFor="let tag of currentFilters.tags">
+        {{tag}}
+      </button>
     </div>
+
+    <div name="Submit">
+        <button mat-raised-button [disabled]="!filterForm.valid" (click)="submitFilters()">Set Filters</button>
+    </div>
+
+  </div>
 </form>
+
+
+

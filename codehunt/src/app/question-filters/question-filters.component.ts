@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatDivider } from '@angular/material/divider';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,21 +22,25 @@ export class QuestionFiltersComponent implements OnInit {
   @Output() filters = new EventEmitter<Filter>();
   currentFilters : Filter;
 
-  difficultyFormControl = new FormControl('', [
-    Validators.min(0),
-    Validators.max(1000000)
-  ]);
-
   matcher = new MyErrorStateMatcher();
+  filterForm: FormGroup;
 
-  constructor() {
-    this.currentFilters = {minRating : 800, maxRating : 3500,
-                           tags : [], tagsTakenByOr : true,
-                           sortBy : "solvedCount", ascending : true,
-                           numberOfRows : 50, solvedByUser : 0}
+  // convenience getter for easy access to form fields
+  get f() { return this.filterForm.controls; }
+
+  constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.currentFilters = {minRating : 800, maxRating : 3500,
+                           tags : ["PO", "POOO"], tagsTakenByOr : true,
+                           sortBy : "solvedCount", ascending : true,
+                           numberOfRows : 50, solvedByUser : 0};
+
+    this.filterForm = this.formBuilder.group({
+            minRating: ['', Validators.min(0)],
+            maxRating: ['', Validators.min(0)],
+        });
   }
 
   submitFilters(): void {
