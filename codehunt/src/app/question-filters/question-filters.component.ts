@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ErrorStateMatcher} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDivider } from '@angular/material/divider';
@@ -33,7 +34,7 @@ export class QuestionFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentFilters = {minRating : 800, maxRating : 3500,
-                           tags : [], tagsTakenByOr : false,
+                           tags : [], tagsTakenByOr : true,
                            sortBy : "solvedCount", ascending : true,
                            numberOfRows : 50, solvedByUser : 0};
 
@@ -42,13 +43,24 @@ export class QuestionFiltersComponent implements OnInit {
             maxRating: ['', Validators.min(0)],
         });
 
-    this.allTags = [{name : "greedy", isActive : true},
-                    {name : "dp", isActive : true},
-                    {name : "math", isActive : true}];
+    this.allTags = [{name : "greedy", isActive : false},
+                    {name : "dp", isActive : false},
+                    {name : "math", isActive : false}/*,
+                    {name : "binary search", isActive : false},
+                    {name : "geometry", isActive : false},
+                    {name : "graph", isActive : false},
+                    {name : "data structures", isActive : false},
+                    {name : "bitmasks", isActive : false},
+                    {name : "divide and conquer", isActive : false}*/
+                    ];
   }
 
-  toggle(tag : Tag): void {
+  toggleTag(tag : Tag): void {
     tag.isActive = !tag.isActive;
+  }
+
+  setTakenByOr(): void {
+    this.currentFilters.tagsTakenByOr = !this.currentFilters.tagsTakenByOr;
   }
 
   submitFilters(): void {

@@ -23,12 +23,23 @@
       </mat-form-field>
     </div>
 
-    <div name="Tags Input" fxLayout="row wrap" fxLayoutGap="1px">
-      <button mat-raised-button class="button" *ngFor="let tag of allTags"
-                                [ngClass]="tag.isActive?'active':'inactive'"
-                                (click)="toggle(tag)">
-        {{tag.name}}
-      </button>
+    <div name = "Tags Input" fxLayout="column">
+      <div fxLayout="row">
+        <p class="FilterTitle">Tags</p>
+
+        <mat-slide-toggle [checked]="currentFilters.tagsTakenByOr"
+                          (change)="setTakenByOr()">
+          Tags taken by OR
+        </mat-slide-toggle>
+      </div>
+
+      <div name="Tags Choices" fxLayout="row" fxLayoutGap="1px">
+        <button mat-raised-button class="button" *ngFor="let tag of allTags"
+                                  [ngClass]="tag.isActive?'active':'inactive'"
+                                  (click)="toggleTag(tag)">
+          {{tag.name}}
+        </button>
+      </div>
     </div>
 
     <div name="Submit">
