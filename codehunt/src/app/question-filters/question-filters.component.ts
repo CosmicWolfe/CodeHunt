@@ -4,6 +4,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ErrorStateMatcher} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDivider } from '@angular/material/divider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -61,6 +62,10 @@ export class QuestionFiltersComponent implements OnInit {
 
   setTakenByOr(): void {
     this.currentFilters.tagsTakenByOr = !this.currentFilters.tagsTakenByOr;
+  }
+
+  setSolvedBy(choice : number): void {
+    this.currentFilters.solvedByUser = choice;
   }
 
   submitFilters(): void {
