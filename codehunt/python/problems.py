@@ -52,7 +52,11 @@ def RefreshProblems():
        contestId = str(problemStats["contestId"]) if "contestId" in problemStats else "X"
        index = contestId + problemStats["index"]
        solvedCount = problemStats["solvedCount"]
-       problems[index].solvedCount = solvedCount
+
+       if (problems[index].name.startswith("Labyrinth")):
+           problems.pop(index)
+       else:
+           problems[index].solvedCount = solvedCount
 
    ConvertProblems()
 
