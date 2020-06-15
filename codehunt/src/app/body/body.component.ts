@@ -19,7 +19,7 @@ export class BodyComponent implements OnInit {
   currentFilters: Filter = {
     minRating: 800,
     maxRating: 3500,
-    tags: ['greedy', 'dp'],
+    tags: [],
     tagsTakenByOr: false,
     solvedByUser: 0,
     sortBy: 'solvedCount',

@@ -18,9 +18,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .button {
-  background-color: #4CAF50 !important;
   border: none !important;
-  color: white !important;
   padding: 20px !important;
   text-align: center !important;
   text-decoration: none !important;
@@ -30,3 +28,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 17px !important;
 }
 
+button.active {
+  background-color: #5cb85c !important;
+  color: white !important;
+}
+
+.inactive {
+  background-color: #d9534f !important;
+  color: black !important;
+}

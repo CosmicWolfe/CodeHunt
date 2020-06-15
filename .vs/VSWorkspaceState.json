@@ -7,10 +7,10 @@
     "\\codehunt\\src\\app",
     "\\codehunt\\src\\app\\body",
     "\\codehunt\\src\\app\\header",
+    "\\codehunt\\src\\app\\question-filters",
     "\\codehunt\\src\\app\\questions-table",
-    "\\codehunt\\src\\assets",
-    "\\codehunt\\src\\environments"
+    "\\codehunt\\src\\assets"
   ],
-  "SelectedNode": "\\codehunt\\src\\app\\app.component.ts",
+  "SelectedNode": "\\codehunt\\python\\problems.py",
   "PreviewInSolutionExplorer": false
 }

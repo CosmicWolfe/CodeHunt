@@ -54,4 +54,9 @@ declare global {
     solvedByUser: boolean,
     solvedCount: number
   }
+
+  interface Tag {
+    name : string,
+    isActive : boolean;
+  }
 }

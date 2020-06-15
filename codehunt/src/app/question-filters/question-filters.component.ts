@@ -21,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class QuestionFiltersComponent implements OnInit {
   @Output() filters = new EventEmitter<Filter>();
   currentFilters : Filter;
-
+  allTags : Tag[]
   matcher = new MyErrorStateMatcher();
   filterForm: FormGroup;
 
@@ -33,7 +33,7 @@ export class QuestionFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentFilters = {minRating : 800, maxRating : 3500,
-                           tags : ['greedy', 'dp'], tagsTakenByOr : false,
+                           tags : [], tagsTakenByOr : false,
                            sortBy : "solvedCount", ascending : true,
                            numberOfRows : 50, solvedByUser : 0};
 
@@ -41,9 +41,24 @@ export class QuestionFiltersComponent implements OnInit {
             minRating: ['', Validators.min(0)],
             maxRating: ['', Validators.min(0)],
         });
+
+    this.allTags = [{name : "greedy", isActive : true},
+                    {name : "dp", isActive : true},
+                    {name : "math", isActive : true}];
+  }
+
+  toggle(tag : Tag): void {
+    tag.isActive = !tag.isActive;
   }
 
   submitFilters(): void {
+    this.currentFilters.tags = [];
+    for (let tag of this.allTags) {
+      if (tag.isActive) {
+        this.currentFilters.tags.push(tag.name);
+      }
+    }
+
     this.filters.emit(this.currentFilters);
   }
 

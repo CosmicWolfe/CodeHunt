@@ -24,8 +24,10 @@
     </div>
 
     <div name="Tags Input" fxLayout="row wrap" fxLayoutGap="1px">
-      <button class="button" *ngFor="let tag of currentFilters.tags">
-        {{tag}}
+      <button mat-raised-button class="button" *ngFor="let tag of allTags"
+                                [ngClass]="tag.isActive?'active':'inactive'"
+                                (click)="toggle(tag)">
+        {{tag.name}}
       </button>
     </div>
 
