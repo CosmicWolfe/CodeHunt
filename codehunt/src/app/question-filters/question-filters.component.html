@@ -51,6 +51,15 @@
        </mat-button-toggle-group>
     </div>
 
+    <div name = "SortedBy Input">
+       <p>Sorted By</p>
+       <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle [checked]="currentFilters.sortBy === 'index'" (change)="setSortBy(0)">Index</mat-button-toggle>
+          <mat-button-toggle [checked]="currentFilters.sortBy === 'solvedCount'" (change)="setSortBy(1)">Solved Count</mat-button-toggle>
+          <mat-button-toggle [checked]="currentFilters.sortBy === 'rating'" (change)="setSortBy(2)">Difficulty</mat-button-toggle>
+       </mat-button-toggle-group>
+    </div>
+
     <div name="Submit">
         <button mat-raised-button [disabled]="!filterForm.valid" (click)="submitFilters()">Set Filters</button>
     </div>

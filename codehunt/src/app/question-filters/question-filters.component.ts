@@ -68,6 +68,15 @@ export class QuestionFiltersComponent implements OnInit {
     this.currentFilters.solvedByUser = choice;
   }
 
+  setSortBy(choice : number): void {
+    if (choice == 0)
+      this.currentFilters.sortBy = "index";
+    if (choice == 1)
+      this.currentFilters.sortBy = "solvedCount";
+    if (choice == 2)
+      this.currentFilters.sortBy = "rating";
+  }
+
   submitFilters(): void {
     this.currentFilters.tags = [];
     for (let tag of this.allTags) {
