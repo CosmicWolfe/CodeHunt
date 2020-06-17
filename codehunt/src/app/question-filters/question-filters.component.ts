@@ -64,6 +64,11 @@ export class QuestionFiltersComponent implements OnInit {
     this.currentFilters.tagsTakenByOr = !this.currentFilters.tagsTakenByOr;
   }
 
+  setAscending(): void {
+    this.currentFilters.ascending = !this.currentFilters.ascending;
+  }
+
+
   setSolvedBy(choice : number): void {
     this.currentFilters.solvedByUser = choice;
   }
@@ -75,6 +80,10 @@ export class QuestionFiltersComponent implements OnInit {
       this.currentFilters.sortBy = "solvedCount";
     if (choice == 2)
       this.currentFilters.sortBy = "rating";
+  }
+
+  setNumberOfRows(noOfRows : number): void {
+    this.currentFilters.numberOfRows = noOfRows;
   }
 
   submitFilters(): void {
