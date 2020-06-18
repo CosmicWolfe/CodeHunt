@@ -14,8 +14,10 @@ api = Api(app)
 CORS(app)
 
 class Problem(object):
-    def __init__(self, index, name, rating, solvedByUser, solvedCount = 0, tags = []):
+    def __init__(self, index, problemId, contestId, name, rating, solvedByUser, solvedCount = 0, tags = []):
         self.index = index
+        self.problemId = problemId
+        self.contestId = contestId
         self.name = name
         self.rating = rating
         self.solvedByUser = solvedByUser
@@ -38,14 +40,15 @@ def RefreshProblems():
    lists = json.loads(html.text)
 
    for problem in lists["result"]["problems"]:
+       problemId = problem["index"]
        contestId = str(problem["contestId"]) if "contestId" in problem else "X"
-       index = contestId + problem["index"]
+       index = contestId + problemId
        name = problem["name"]
        rating = problem["rating"] if "rating" in problem else 0
        solvedByUser = False
        solvedCount = 0
 
-       problems[index] = Problem(index, name, rating, solvedCount)
+       problems[index] = Problem(index, problemId, contestId, name, rating, solvedCount)
        problems[index].tags = problem["tags"].copy()
 
    for problemStats in lists["result"]["problemStatistics"]:
