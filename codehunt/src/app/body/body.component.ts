@@ -82,21 +82,16 @@ export class BodyComponent implements OnInit {
     console.log(this.userQuestions);
     
     let filteredQuestions = this.userQuestions.filter((question: Question) => {
-      //console.log("theQuestion");
-      //console.log(question);
       if (question.rating < filters.minRating || question.rating > filters.maxRating) {
-        //console.log("rating out");
         return false;
       }
       
       if (filters.solvedByUser == 1) {
         if (question.solvedByUser) {
-          //console.log("solvedby 1 out");
           return false;
         }
       } else if (filters.solvedByUser == 2) {
         if (!question.solvedByUser) {
-          //console.log("solvedby 2 out");
           return false;
         }
       }
@@ -110,21 +105,15 @@ export class BodyComponent implements OnInit {
           }
         }
         if (!foundTag && filters.tags.length > 0) {
-          //console.log("filter tagor out");
           return false;
         }
       } else {
         for (let i = 0; i < filters.tags.length; ++i) {
-          /*console.log(filters.tags[i]);
-          console.log("question tags");
-          console.log(question.tags);*/
           if (!question.tags.includes(filters.tags[i])) {
-            //console.log("filter tag not or out");
             return false;
           }
         }
       }
-      //console.log("returning true");
       return true;
     });
 
@@ -134,9 +123,14 @@ export class BodyComponent implements OnInit {
     filteredQuestions.sort((q1: Question, q2: Question) => {
       let sortDirection = filters.ascending ? 1 : -1;
       if (filters.sortBy == 'rating') {
-        return (q2.rating - q1.rating) * sortDirection;
+        if (q2.rating != q1.rating) {
+          return (q2.rating - q1.rating) * sortDirection;
+        }
       } else if (filters.sortBy == 'index') {
-        return ((q2.index > q1.index) ? 1 : -1) * sortDirection;
+        if (q1.contestId == q2.contestId) {
+          return ((q2.problemId > q1.problemId) ? 1 : -1) * sortDirection;
+        }
+        return (q2.contestId - q1.contestId) * sortDirection;
       }
       return (q2.solvedCount - q1.solvedCount) * sortDirection;
     });

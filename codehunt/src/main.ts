@@ -42,6 +42,7 @@ declare global {
   interface Question {
     contestId: number,
     problemsetName: string,
+    problemId: string,
     index: string,
     name: string,
     /**
