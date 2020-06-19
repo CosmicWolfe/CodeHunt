@@ -1,6 +1,6 @@
 <!--user selection and filter, maybe no need for component-->
 
-<div fxLayout="row" fxLayoutAlign="space-between start">
+<div fxLayout="row">
     <div fxLayout="column" fxLayoutAlign="start start" style="flex-grow: 1 !important;">
         <div fxLayoutGap="16px">
             <input mat-input style="width: 250px !important;" [(ngModel)]="username" placeholder="Enter your Codeforces username">
@@ -9,7 +9,7 @@
         </div>
         <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
     </div>
-    <app-question-filters style="width: 30% !important" (filters)="updateFilters($event)"></app-question-filters>
+    <app-question-filters style="width: 35% !important" (filters)="updateFilters($event)"></app-question-filters>
 </div>
 
 <!--mat-form-field style="width: 250px;">

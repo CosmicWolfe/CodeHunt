@@ -33,7 +33,7 @@
         </mat-slide-toggle>
       </div>
 
-      <div name="Tags Choices" fxLayout="row wrap" fxLayoutGap="1px" style="width: inherit !important;">
+      <div name="Tags Choices" fxLayout="row wrap" style="width: inherit !important;">
         <button mat-raised-button class="button" *ngFor="let tag of allTags"
                                   [ngClass]="tag.isActive?'active':'inactive'"
                                   (click)="toggleTag(tag)">
