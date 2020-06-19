@@ -1,5 +1,5 @@
 <form [formGroup]="filterForm">
-  <div fxLayout="column" fxLayoutAlign="start center">
+  <div fxLayout="column" fxLayoutAlign="start center" style="width: inherit !important;">
     <!-- Min and Max Rating Input -->
     <div name = "Minimum Rating Input">
       <mat-form-field>
@@ -33,7 +33,7 @@
         </mat-slide-toggle>
       </div>
 
-      <div name="Tags Choices" fxLayout="row" fxLayoutGap="1px">
+      <div name="Tags Choices" fxLayout="row wrap" fxLayoutGap="1px" style="width: inherit !important;">
         <button mat-raised-button class="button" *ngFor="let tag of allTags"
                                   [ngClass]="tag.isActive?'active':'inactive'"
                                   (click)="toggleTag(tag)">

@@ -48,9 +48,6 @@ export class QuestionFiltersComponent implements OnInit {
     this.allTags = [];
     
     for (let tag in TagConstants.LIST_OF_TAGS) {
-      if (tag == 5) {
-        break;
-      }
       this.allTags.push({name : TagConstants.LIST_OF_TAGS[tag], isActive : false});
     }
   }
