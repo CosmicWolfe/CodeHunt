@@ -2,7 +2,7 @@
   padding: 0px 8px !important;
   text-align: center !important;
   display: inline-block !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
   margin: 3px 3px !important;
   border-radius: 18px !important;
 }
@@ -15,4 +15,17 @@ button.active {
 button.inactive {
   background-color: #d9534f !important;
   color: black !important;
+}
+
+/* Removing Arrows from Number Input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
