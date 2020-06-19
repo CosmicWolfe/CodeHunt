@@ -5,7 +5,7 @@ import { ErrorStateMatcher} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDivider } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { Filter, Tag } from '../app.constants';
+import { Filter, Tag, TagConstants } from '../app.constants';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -45,16 +45,14 @@ export class QuestionFiltersComponent implements OnInit {
             maxRating: ['', Validators.min(0)],
         });
 
-    this.allTags = [{name : "greedy", isActive : false},
-                    {name : "dp", isActive : false},
-                    {name : "math", isActive : false}/*,
-                    {name : "binary search", isActive : false},
-                    {name : "geometry", isActive : false},
-                    {name : "graph", isActive : false},
-                    {name : "data structures", isActive : false},
-                    {name : "bitmasks", isActive : false},
-                    {name : "divide and conquer", isActive : false}*/
-                    ];
+    this.allTags = [];
+    
+    for (let tag in TagConstants.LIST_OF_TAGS) {
+      if (tag == 5) {
+        break;
+      }
+      this.allTags.push({name : TagConstants.LIST_OF_TAGS[tag], isActive : false});
+    }
   }
 
   toggleTag(tag : Tag): void {
