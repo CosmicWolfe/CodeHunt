@@ -5,6 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { Question, Filter } from '../app.constants';
 
 @Component({
   selector: 'app-body',
@@ -126,6 +127,7 @@ export class BodyComponent implements OnInit {
         if (q2.rating != q1.rating) {
           return (q2.rating - q1.rating) * sortDirection;
         }
+        return q2.solvedCount - q1.solvedCount;
       } else if (filters.sortBy == 'index') {
         if (q1.contestId == q2.contestId) {
           return ((q2.problemId > q1.problemId) ? 1 : -1) * sortDirection;
