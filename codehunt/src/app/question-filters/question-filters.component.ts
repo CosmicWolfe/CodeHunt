@@ -37,7 +37,7 @@ export class QuestionFiltersComponent implements OnInit {
   ngOnInit(): void {
     this.currentFilters = {minRating : 800, maxRating : 3500,
                            tags : [], tagsTakenByOr : true,
-                           sortBy : "solvedCount", ascending : true,
+                           sortBy : "index", ascending : true,
                            solvedByUser : 0};
 
     this.filterForm = this.formBuilder.group({

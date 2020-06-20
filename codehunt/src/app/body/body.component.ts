@@ -52,9 +52,9 @@ export class BodyComponent implements OnInit {
 
   public submitUsername() {
     // check for valid username, then get userQuestions
-
+    console.log(this.username)
     this.userQuestionsSubscription.unsubscribe();
-    this.userQuestionsSubscription = this.httpClient.get('http://127.0.0.1:5002/problems/' +  "jt3698").subscribe(data => {
+    this.userQuestionsSubscription = this.httpClient.get('http://127.0.0.1:5002/problems/' +  this.username).subscribe(data => {
       let questions = [];
       for (let key in data) {
         questions.push(data[key]);

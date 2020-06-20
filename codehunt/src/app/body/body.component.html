@@ -3,14 +3,12 @@
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div fxLayout="column" fxLayoutAlign="start start" style="flex-grow: 1 !important;">
         <div fxLayout="row" fxLayoutGap="36px" style="margin-left: 48px !important;">
-            <form>
-                <mat-form-field>
-                    <mat-label>Username</mat-label>
-                    <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username">
-                </mat-form-field>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username">
+            </mat-form-field>
 
-                <button mat-raised-button (click)="submitUsername()">View Questions</button>
-            </form>
+            <button mat-raised-button (click)="submitUsername()">View Questions</button>
         </div>
         <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
     </div>
