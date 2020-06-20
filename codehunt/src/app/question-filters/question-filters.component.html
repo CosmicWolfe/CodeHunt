@@ -1,26 +1,28 @@
 <form [formGroup]="filterForm">
   <div fxLayout="column" fxLayoutAlign="start center" style="width: inherit !important;">
     <!-- Min and Max Rating Input -->
-    <div name = "Minimum Rating Input">
-      <mat-form-field>
-        <mat-label>Minimum Difficulty</mat-label>
-        <input matInput formControlName="minRating" [errorStateMatcher]="matcher" type = "number"
-                [(ngModel)]="currentFilters.minRating" placeholder="800">
-        <mat-error *ngIf="f.minRating.errors">
-          Please enter a valid difficulty
-        </mat-error>
-      </mat-form-field>
-    </div>
+    <div fxLayout="row" name="Rating Input" fxLayoutGap="10px">
+      <div name = "Minimum Rating Input">
+        <mat-form-field>
+          <mat-label>Minimum Difficulty</mat-label>
+          <input matInput formControlName="minRating" [errorStateMatcher]="matcher" type = "number"
+                  [(ngModel)]="currentFilters.minRating" placeholder="800">
+          <mat-error *ngIf="f.minRating.errors">
+            Please enter a valid difficulty
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <div name = "Maximum Rating Input">
-      <mat-form-field>
-        <mat-label>Maximum Difficulty</mat-label>
-        <input matInput formControlName="maxRating" [errorStateMatcher]="matcher"
-                [(ngModel)]="currentFilters.maxRating" placeholder="3500">
-        <mat-error *ngIf="f.maxRating.errors">
-          Please enter a valid difficulty
-        </mat-error>
-      </mat-form-field>
+      <div name = "Maximum Rating Input">
+        <mat-form-field>
+          <mat-label>Maximum Difficulty</mat-label>
+          <input matInput formControlName="maxRating" [errorStateMatcher]="matcher"
+                  [(ngModel)]="currentFilters.maxRating" placeholder="3500">
+          <mat-error *ngIf="f.maxRating.errors">
+            Please enter a valid difficulty
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
     <div name = "Tags Input" fxLayout="column">
