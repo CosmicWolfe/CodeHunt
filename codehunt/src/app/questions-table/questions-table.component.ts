@@ -1,5 +1,8 @@
-import { Component, OnInit, SimpleChange, Input } from '@angular/core';
+import { Component, OnInit, SimpleChange, Input, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Question } from '../app.constants';
 
 @Component({
   selector: 'app-questions-table',
@@ -11,32 +14,20 @@ export class QuestionsTableComponent implements OnInit {
   // will take as input user handle, and filters
   @Input('questions') questions : []
 
-  questionsTest = [
-    {
-      contestId: 4,
-      index: 'A',
-      name: 'Watermelon',
-      solvedBy: 12345,
-      difficulty: 800
-    },
-    {
-      contestId: 5,
-      index: 'B',
-      name: 'Orange',
-      solvedBy: 123456,
-      difficulty: 8000
-    }
-  ];
-
-  displayedColumns: string[] = ['id', 'name', 'solvedBy', 'difficulty', 'solved'];
+  displayedColumns: string[] = ['No.', 'id', 'name', 'solvedBy', 'difficulty', 'solved'];
+  dataSource = new MatTableDataSource<Question>(this.questions);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(changes : SimpleChange): void {
     console.log(changes);
+    this.dataSource.data = this.questions;
+    this.dataSource.paginator = this.paginator;
   }
 
 }

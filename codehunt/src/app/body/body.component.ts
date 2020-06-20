@@ -24,8 +24,7 @@ export class BodyComponent implements OnInit {
     tagsTakenByOr: false,
     solvedByUser: 0,
     sortBy: 'solvedCount',
-    ascending: true,
-    numberOfRows: 50
+    ascending: true
   };
 
   constructor(private httpClient: HttpClient) {}
@@ -36,7 +35,6 @@ export class BodyComponent implements OnInit {
       for (let key in data) {
         questions.push(data[key]);
         questions[questions.length - 1].tags = data[key].tags.slice(0);
-        if (questions.length == 100) break;
       }
       this.userQuestions = questions;
       console.log("oninit questions");
@@ -56,7 +54,7 @@ export class BodyComponent implements OnInit {
     // check for valid username, then get userQuestions
 
     this.userQuestionsSubscription.unsubscribe();
-    this.userQuestionsSubscription = this.httpClient.get('http://127.0.0.1:5002/problems/' + this.username).subscribe(data => {
+    this.userQuestionsSubscription = this.httpClient.get('http://127.0.0.1:5002/problems/' +  "jt3698").subscribe(data => {
       let questions = [];
       for (let key in data) {
         questions.push(data[key]);
@@ -140,8 +138,7 @@ export class BodyComponent implements OnInit {
     console.log("filteredQuestions after sort");
     console.log(filteredQuestions);
 
-    let tempFilteredUserQuestions = filteredQuestions.slice(0, Math.min(this.userQuestions.length, filters.numberOfRows));
-    this.filteredUserQuestions = tempFilteredUserQuestions;
+    this.filteredUserQuestions = filteredQuestions;
   }
 
 }

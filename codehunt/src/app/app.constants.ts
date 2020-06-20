@@ -19,9 +19,7 @@ export interface Filter {
      */
     sortBy : string,
 
-    ascending : boolean,
-
-    numberOfRows : number
+    ascending : boolean
   }
   
   export interface Question {

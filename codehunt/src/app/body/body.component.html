@@ -8,8 +8,9 @@
                     <mat-label>Username</mat-label>
                     <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username">
                 </mat-form-field>
+
+                <button mat-raised-button (click)="submitUsername()">View Questions</button>
             </form>
-            <button mat-raised-button (click)="submitUsername()">View Questions</button>
         </div>
         <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
     </div>

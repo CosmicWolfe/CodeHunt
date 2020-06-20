@@ -38,7 +38,7 @@ export class QuestionFiltersComponent implements OnInit {
     this.currentFilters = {minRating : 800, maxRating : 3500,
                            tags : [], tagsTakenByOr : true,
                            sortBy : "solvedCount", ascending : true,
-                           numberOfRows : 50, solvedByUser : 0};
+                           solvedByUser : 0};
 
     this.filterForm = this.formBuilder.group({
             minRating: ['', Validators.min(0)],
@@ -76,10 +76,6 @@ export class QuestionFiltersComponent implements OnInit {
       this.currentFilters.sortBy = "solvedCount";
     if (choice == 2)
       this.currentFilters.sortBy = "rating";
-  }
-
-  setNumberOfRows(noOfRows : number): void {
-    this.currentFilters.numberOfRows = noOfRows;
   }
 
   submitFilters(): void {

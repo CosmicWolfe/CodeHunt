@@ -70,16 +70,6 @@
        </mat-button-toggle-group>
     </div>
 
-    <div name = "Number of Rows Input">
-       <p class="FilterTitle">Number of Rows</p>
-       <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle [checked]="currentFilters.numberOfRows == 25" (change)="setNumberOfRows(25)">25</mat-button-toggle>
-          <mat-button-toggle [checked]="currentFilters.numberOfRows == 50" (change)="setNumberOfRows(50)">50</mat-button-toggle>
-          <mat-button-toggle [checked]="currentFilters.numberOfRows == 100" (change)="setNumberOfRows(100)">100</mat-button-toggle>
-          <mat-button-toggle [checked]="currentFilters.numberOfRows == 10000" (change)="setNumberOfRows(10000)">All</mat-button-toggle>
-       </mat-button-toggle-group>
-    </div>
-
     <div name="Submit">
         <button mat-raised-button [disabled]="!filterForm.valid" (click)="submitFilters()">Set Filters</button>
     </div>

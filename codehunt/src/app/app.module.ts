@@ -19,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { QuestionFiltersComponent } from './question-filters/question-filters.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatTableModule,
     MatInputModule,
     MatButtonModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
