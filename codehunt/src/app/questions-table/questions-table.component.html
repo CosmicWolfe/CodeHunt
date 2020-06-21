@@ -9,8 +9,8 @@
     </ng-container>
     
     <!-- Problem ID Column -->
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px !important;"> Problem ID </th>
+    <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 100px !important;"> Problem ID </th>
         <td mat-cell *matCellDef="let element" style="width: 100px !important;" [class.accepted]="element.solvedByUser"><a target="_blank" [href]="'https://codeforces.com/problemset/problem/'+element.contestId+'/'+element.problemId">{{element.index}}</a></td>
     </ng-container>
 
@@ -23,7 +23,7 @@
 
     <!-- Solved Count Column -->
     <ng-container matColumnDef="solvedCount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header tyle="width: 100px !important;"> Solved By </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 100px !important;"> Solved By </th>
         <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser" style="width: 100px !important;"> {{element.solvedCount}} </td>
     </ng-container>
 
