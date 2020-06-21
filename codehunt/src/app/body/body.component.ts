@@ -71,7 +71,7 @@ export class BodyComponent implements OnInit {
     this.currentFilters = filter;
   }
 
-  private filterQuestions() {
+  public filterQuestions() {
     // filters the questions according to the filters, and userSubmissions
     let filters = this.currentFilters;
     console.log("filters");

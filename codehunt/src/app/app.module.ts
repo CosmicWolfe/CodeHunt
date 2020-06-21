@@ -20,6 +20,7 @@ import { QuestionFiltersComponent } from './question-filters/question-filters.co
 import { ReactiveFormsModule} from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatInputModule,
     MatButtonModule,
     MatPaginatorModule,
+    MatSortModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,

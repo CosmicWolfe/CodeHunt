@@ -1,6 +1,7 @@
 import { Component, OnInit, SimpleChange, Input, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Question } from '../app.constants';
 
@@ -17,11 +18,13 @@ export class QuestionsTableComponent implements OnInit {
   displayedColumns: string[] = ['No.', 'id', 'name', 'solvedBy', 'difficulty', 'solved'];
   dataSource = new MatTableDataSource<Question>(this.questions);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnChanges(changes : SimpleChange): void {
