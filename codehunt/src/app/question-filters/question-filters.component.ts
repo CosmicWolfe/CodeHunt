@@ -38,7 +38,6 @@ export class QuestionFiltersComponent implements OnInit {
   ngOnInit(): void {
     this.currentFilters = {minRating : 800, maxRating : 3500,
                            tags : [], tagsTakenByOr : true,
-                           sortBy : "index", ascending : true,
                            solvedByUser : 0};
 
     this.filterForm = this.formBuilder.group({
@@ -72,25 +71,8 @@ export class QuestionFiltersComponent implements OnInit {
     this.updateFilters();
   }
 
-  setAscending(): void {
-    this.currentFilters.ascending = !this.currentFilters.ascending;
-
-    this.updateFilters();
-  }
-
   setSolvedBy(choice : number): void {
     this.currentFilters.solvedByUser = choice;
-
-    this.updateFilters();
-  }
-
-  setSortBy(choice : number): void {
-    if (choice == 0)
-      this.currentFilters.sortBy = "index";
-    if (choice == 1)
-      this.currentFilters.sortBy = "solvedCount";
-    if (choice == 2)
-      this.currentFilters.sortBy = "rating";
 
     this.updateFilters();
   }

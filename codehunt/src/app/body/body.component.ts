@@ -22,9 +22,7 @@ export class BodyComponent implements OnInit {
     maxRating: 3500,
     tags: [],
     tagsTakenByOr: false,
-    solvedByUser: 0,
-    sortBy: 'solvedCount',
-    ascending: true
+    solvedByUser: 0
   };
 
   constructor(private httpClient: HttpClient) {}
@@ -118,22 +116,6 @@ export class BodyComponent implements OnInit {
 
     console.log("filteredQuestions after filter");
     console.log(filteredQuestions);
-
-    filteredQuestions.sort((q1: Question, q2: Question) => {
-      let sortDirection = filters.ascending ? 1 : -1;
-      if (filters.sortBy == 'rating') {
-        if (q2.rating != q1.rating) {
-          return (q2.rating - q1.rating) * sortDirection;
-        }
-        return q2.solvedCount - q1.solvedCount;
-      } else if (filters.sortBy == 'index') {
-        if (q1.contestId == q2.contestId) {
-          return ((q2.problemId > q1.problemId) ? 1 : -1) * sortDirection;
-        }
-        return (q2.contestId - q1.contestId) * sortDirection;
-      }
-      return (q2.solvedCount - q1.solvedCount) * sortDirection;
-    });
 
     console.log("filteredQuestions after sort");
     console.log(filteredQuestions);

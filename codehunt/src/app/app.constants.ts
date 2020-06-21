@@ -10,16 +10,7 @@ export interface Filter {
      * 1 - Not solved by user
      * 2 - Solved by user
      */
-    solvedByUser : number,
-
-    /**  
-     * "rating"
-     * "solvedCount" 
-     * "index"
-     */
-    sortBy : string,
-
-    ascending : boolean
+    solvedByUser : number
   }
   
   export interface Question {
