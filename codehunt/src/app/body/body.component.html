@@ -12,7 +12,7 @@
         </div>
         <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
     </div>
-    <app-question-filters style="width: 25% !important" (filters)="updateFilters($event)"></app-question-filters>
+    <app-question-filters style="width: 25% !important" (filters)="updateFilters($event)" (refresh)="filterQuestions()"></app-question-filters>
 </div>
 
 <!--mat-form-field style="width: 250px;">

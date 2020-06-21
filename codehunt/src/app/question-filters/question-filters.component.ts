@@ -23,6 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 export class QuestionFiltersComponent implements OnInit {
   @Output() filters = new EventEmitter<Filter>();
+  @Output() refresh = new EventEmitter();
   currentFilters : Filter;
   allTags : Tag[]
   matcher = new MyErrorStateMatcher();
@@ -54,19 +55,33 @@ export class QuestionFiltersComponent implements OnInit {
 
   toggleTag(tag : Tag): void {
     tag.isActive = !tag.isActive;
+
+    this.currentFilters.tags = [];
+    for (let tag of this.allTags) {
+      if (tag.isActive) {
+        this.currentFilters.tags.push(tag.name);
+      }
+    }
+
+    this.updateFilters();
   }
 
   setTakenByOr(): void {
     this.currentFilters.tagsTakenByOr = !this.currentFilters.tagsTakenByOr;
+
+    this.updateFilters();
   }
 
   setAscending(): void {
     this.currentFilters.ascending = !this.currentFilters.ascending;
-  }
 
+    this.updateFilters();
+  }
 
   setSolvedBy(choice : number): void {
     this.currentFilters.solvedByUser = choice;
+
+    this.updateFilters();
   }
 
   setSortBy(choice : number): void {
@@ -76,20 +91,15 @@ export class QuestionFiltersComponent implements OnInit {
       this.currentFilters.sortBy = "solvedCount";
     if (choice == 2)
       this.currentFilters.sortBy = "rating";
+
+    this.updateFilters();
+  }
+
+  updateFilters(): void {
+    this.filters.emit(this.currentFilters);
   }
 
   submitFilters(): void {
-    this.currentFilters.tags = [];
-    for (let tag of this.allTags) {
-      if (tag.isActive) {
-        this.currentFilters.tags.push(tag.name);
-      }
-    }
-
-    this.filters.emit(this.currentFilters);
-  }
-
-  emit(): void {
-    this.filters.emit(this.currentFilters);
+    this.refresh.emit();
   }
 }
