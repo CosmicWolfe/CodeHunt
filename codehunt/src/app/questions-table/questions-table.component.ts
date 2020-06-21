@@ -14,7 +14,7 @@ export class QuestionsTableComponent implements OnInit {
   // will take as input user handle, and filters
   @Input('questions') questions : []
 
-  displayedColumns: string[] = ['No.', 'id', 'name', 'solvedBy', 'difficulty', 'solved'];
+  displayedColumns: string[] = ['No.', 'id', 'name', 'solvedBy', 'difficulty'];
   dataSource = new MatTableDataSource<Question>(this.questions);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
