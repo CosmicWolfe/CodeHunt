@@ -1,42 +1,36 @@
 <div>
-<table mat-table matSort [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource">
     <!-- Row ID Column -->
     <ng-container matColumnDef="No.">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element; let i = index">
+        <th mat-header-cell *matHeaderCellDef style="width: 60px !important;"> No. </th>
+        <td mat-cell *matCellDef="let element; let i = index" style="width: 60px !important;" [class.accepted]="element.solvedByUser">
           {{i + 1 + this.paginator.pageIndex * this.paginator.pageSize}}
         </td>
     </ng-container>
     
     <!-- Problem ID Column -->
     <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Problem ID </th>
-        <td mat-cell *matCellDef="let element"><a target="_blank" [href]="'https://codeforces.com/problemset/problem/'+element.contestId+'/'+element.problemId">{{element.index}}</a></td>
+        <th mat-header-cell *matHeaderCellDef style="width: 100px !important;"> Problem ID </th>
+        <td mat-cell *matCellDef="let element" style="width: 100px !important;" [class.accepted]="element.solvedByUser"><a target="_blank" [href]="'https://codeforces.com/problemset/problem/'+element.contestId+'/'+element.problemId">{{element.index}}</a></td>
     </ng-container>
 
     
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser"> {{element.name}} </td>
     </ng-container>
 
     <!-- Solved Count Column -->
     <ng-container matColumnDef="solvedBy">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Solved By </th>
-        <td mat-cell *matCellDef="let element"> {{element.solvedCount}} </td>
+        <th mat-header-cell *matHeaderCellDef style="width: 100px !important;"> Solved By </th>
+        <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser" style="width: 100px !important;"> {{element.solvedCount}} </td>
     </ng-container>
 
     <!-- Difficulty Column -->
     <ng-container matColumnDef="difficulty">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Difficulty </th>
-        <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
-    </ng-container>
-
-    <!-- Solved By User Column -->
-    <ng-container matColumnDef="solved">
-        <th mat-header-cell *matHeaderCellDef> Solved </th>
-        <td mat-cell *matCellDef="let element"> {{element.solvedByUser}} </td>
+        <th mat-header-cell *matHeaderCellDef style="width: 60px !important;"> Difficulty </th>
+        <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser" style="width: 60px !important;"> {{element.rating}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
