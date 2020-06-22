@@ -14,13 +14,14 @@ api = Api(app)
 CORS(app)
 
 class Problem(object):
-    def __init__(self, index, problemId, contestId, name, rating, solvedByUser, solvedCount = 0, tags = []):
+    def __init__(self, index, problemId, contestId, name, rating, solvedByUser = False, attemptedByUser = False, solvedCount = 0, tags = []):
         self.index = index
         self.problemId = problemId
         self.contestId = contestId
         self.name = name
         self.rating = rating
         self.solvedByUser = solvedByUser
+        self.attemptedByUser = attemptedByUser
         self.solvedCount = solvedCount
         self.tags = tags
 
@@ -45,10 +46,8 @@ def RefreshProblems():
        index = contestId + problemId
        name = problem["name"]
        rating = problem["rating"] if "rating" in problem else 0
-       solvedByUser = False
-       solvedCount = 0
 
-       problems[index] = Problem(index, problemId, contestId, name, rating, solvedCount)
+       problems[index] = Problem(index, problemId, contestId, name, rating)
        problems[index].tags = problem["tags"].copy()
 
    for problemStats in lists["result"]["problemStatistics"]:
@@ -67,6 +66,7 @@ def RefreshProblems():
 def getProblems(username):
      for index, problem in converted.items():
          problem["solvedByUser"] = False
+         problem["attemptedByUser"] = False
 
      url = "https://codeforces.com/api/user.status?handle=" + username
 
@@ -76,9 +76,10 @@ def getProblems(username):
          problem = submission["problem"]
          contestId = str(problem["contestId"]) if "contestId" in problem else "X"
          index = contestId + problem["index"]
-         if (submission["verdict"] == "OK" and index in converted):
-	           converted[index]["solvedByUser"] = True
-     
+         if (index in converted):
+             converted[index]["attemptedByUser"] = True
+             if (submission["verdict"] == "OK"):
+                 converted[index]["solvedByUser"] = True
      return json.dumps(converted)
 
 @app.route("/submissions/<username>")
