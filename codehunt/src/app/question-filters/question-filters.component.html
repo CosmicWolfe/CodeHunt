@@ -26,13 +26,14 @@
     </div>
 
     <div name = "Tags Input" fxLayout="column">
-      <div fxLayout="row">
+      <div fxLayout="row" fxLayoutAlign="space-evenly">
         <p class="FilterTitle">Tags</p>
-
-        <mat-slide-toggle [checked]="currentFilters.tagsTakenByOr"
-                          (change)="setTakenByOr()">
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
           Taken by OR
-        </mat-slide-toggle>
+          <mat-slide-toggle [checked]="currentFilters.tagsTakenByOr"
+                            (change)="setTakenByOr()">
+          </mat-slide-toggle>
+        </div>
       </div>
 
       <div name="Tags Choices" fxLayout="row wrap" style="width: inherit !important;">
