@@ -5,7 +5,7 @@ import { ErrorStateMatcher} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDivider } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { Filter, Tag, TagConstants } from '../app.constants';
+import { Filter, FilterConstants, Tag, TagConstants } from '../app.constants';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -36,9 +36,10 @@ export class QuestionFiltersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentFilters = {minRating : 800, maxRating : 3500,
-                           tags : [], tagsTakenByOr : true,
-                           relationToUser : 0};
+    this.currentFilters = {} as Filter;
+    for (let x in FilterConstants.DEFAULT_FILTERS) {
+      this.currentFilters[x] = FilterConstants.DEFAULT_FILTERS[x];
+    }
 
     this.filterForm = this.formBuilder.group({
             minRating: ['', Validators.min(0)],

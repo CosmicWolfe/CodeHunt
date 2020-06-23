@@ -5,7 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { Question, Filter } from '../app.constants';
+import { Question, Filter, FilterConstants } from '../app.constants';
 
 @Component({
   selector: 'app-body',
@@ -17,13 +17,7 @@ export class BodyComponent implements OnInit {
   userQuestions: Question[];
   userQuestionsSubscription: Subscription;
   filteredUserQuestions: Question[];
-  currentFilters: Filter = {
-    minRating: 800,
-    maxRating: 3500,
-    tags: [],
-    tagsTakenByOr: false,
-    relationToUser: 0
-  };
+  currentFilters: Filter;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -38,6 +32,11 @@ export class BodyComponent implements OnInit {
       this.filteredUserQuestions = questions;
       this.userQuestionsSubscription.unsubscribe();
     });
+
+    this.currentFilters = {} as Filter;
+    for (let x in FilterConstants.DEFAULT_FILTERS) {
+      this.currentFilters[x] = FilterConstants.DEFAULT_FILTERS[x];
+    }
   }
 
   ngOnDestroy(): void {
