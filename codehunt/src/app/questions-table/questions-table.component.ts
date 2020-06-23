@@ -37,6 +37,8 @@ export class QuestionsTableComponent implements OnInit {
         if (filters.sortBy == 'rating') {
           // rating first
           if (q2.rating != q1.rating) {
+            if (q1.rating == 0) return 1;
+            if (q2.rating == 0) return -1;
             return (q2.rating - q1.rating) * sortDirection;
           }
 
