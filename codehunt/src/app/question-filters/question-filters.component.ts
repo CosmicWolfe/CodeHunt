@@ -38,7 +38,7 @@ export class QuestionFiltersComponent implements OnInit {
   ngOnInit(): void {
     this.currentFilters = {minRating : 800, maxRating : 3500,
                            tags : [], tagsTakenByOr : true,
-                           solvedByUser : 0};
+                           relationToUser : 0};
 
     this.filterForm = this.formBuilder.group({
             minRating: ['', Validators.min(0)],
@@ -72,7 +72,7 @@ export class QuestionFiltersComponent implements OnInit {
   }
 
   setSolvedBy(choice : number): void {
-    this.currentFilters.solvedByUser = choice;
+    this.currentFilters.relationToUser = choice;
 
     this.updateFilters();
   }

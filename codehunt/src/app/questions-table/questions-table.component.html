@@ -3,34 +3,57 @@
     <!-- Row ID Column -->
     <ng-container matColumnDef="No.">
         <th mat-header-cell *matHeaderCellDef style="width: 60px !important;"> No. </th>
-        <td mat-cell *matCellDef="let element; let i = index" style="width: 60px !important;" [class.accepted]="element.solvedByUser">
-          {{i + 1 + this.paginator.pageIndex * this.paginator.pageSize}}
+        <td mat-cell *matCellDef="let element; let i = index" style="width: 60px !important;"
+            [class.accepted]="element.solvedByUser"
+            [class.attempted]="!element.solvedByUser && element.attemptedByUser"
+            [class.grey]="!element.solvedByUser && i%2 == 0">
+            {{i + 1 + this.paginator.pageIndex * this.paginator.pageSize}}
         </td>
     </ng-container>
     
     <!-- Problem ID Column -->
     <ng-container matColumnDef="index">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 100px !important;"> Problem ID </th>
-        <td mat-cell *matCellDef="let element" style="width: 100px !important;" [class.accepted]="element.solvedByUser"><a target="_blank" [href]="'https://codeforces.com/problemset/problem/'+element.contestId+'/'+element.problemId">{{element.index}}</a></td>
+        <td mat-cell *matCellDef="let element; let i = index" style="width: 100px !important;"
+            [class.accepted]="element.solvedByUser"
+            [class.attempted]="!element.solvedByUser && element.attemptedByUser"
+            [class.grey]="!element.solvedByUser && i%2 == 0">
+            <a target="_blank" [href]="'https://codeforces.com/problemset/problem/'+element.contestId+'/'+element.problemId">{{element.index}}</a>
+        </td>
     </ng-container>
 
     
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element; let i = index"
+            [class.accepted]="element.solvedByUser"
+            [class.attempted]="!element.solvedByUser && element.attemptedByUser"
+            [class.grey]="!element.solvedByUser && i%2 == 0">
+            {{element.name}}
+        </td>
     </ng-container>
 
     <!-- Solved Count Column -->
     <ng-container matColumnDef="solvedCount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 100px !important;"> Solved By </th>
-        <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser" style="width: 100px !important;"> {{element.solvedCount}} </td>
+        <td mat-cell *matCellDef="let element; let i = index" style="width: 100px !important;"
+            [class.accepted]="element.solvedByUser"
+            [class.attempted]="!element.solvedByUser && element.attemptedByUser"
+            [class.grey]="!element.solvedByUser && i%2 == 0">
+            {{element.solvedCount}}
+        </td>
     </ng-container>
 
     <!-- Difficulty Column -->
     <ng-container matColumnDef="rating">
         <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 60px !important;"> Difficulty </th>
-        <td mat-cell *matCellDef="let element" [class.accepted]="element.solvedByUser" style="width: 60px !important;"> {{element.rating}} </td>
+        <td mat-cell *matCellDef="let element; let i = index" style="width: 60px !important;"
+            [class.accepted]="element.solvedByUser"
+            [class.attempted]="!element.solvedByUser && element.attemptedByUser"
+            [class.grey]="!element.solvedByUser && i%2 == 0">
+            {{element.rating}}
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

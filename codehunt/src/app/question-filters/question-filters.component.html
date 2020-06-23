@@ -47,9 +47,10 @@
     <div name = "SolvedBy Input">
        <p>Solved By</p>
        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle [checked]="currentFilters.solvedByUser == 0" (change)="setSolvedBy(0)">All</mat-button-toggle>
-          <mat-button-toggle [checked]="currentFilters.solvedByUser == 1" (change)="setSolvedBy(1)">Not Solved</mat-button-toggle>
-          <mat-button-toggle [checked]="currentFilters.solvedByUser == 2" (change)="setSolvedBy(2)">Solved</mat-button-toggle>
+          <mat-button-toggle [checked]="currentFilters.relationToUser == 0" (change)="setSolvedBy(0)">All</mat-button-toggle>
+          <mat-button-toggle [checked]="currentFilters.relationToUser == 1" (change)="setSolvedBy(1)">Unsolved</mat-button-toggle>
+          <mat-button-toggle [checked]="currentFilters.relationToUser == 2" (change)="setSolvedBy(2)">Solved</mat-button-toggle>
+          <mat-button-toggle [checked]="currentFilters.relationToUser == 3" (change)="setSolvedBy(3)">Attempted</mat-button-toggle>
        </mat-button-toggle-group>
     </div>
 

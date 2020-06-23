@@ -9,8 +9,9 @@ export interface Filter {
      * 0 - All problems
      * 1 - Not solved by user
      * 2 - Solved by user
+     * 3 - Attempted by user
      */
-    solvedByUser : number
+    relationToUser : number
   }
   
   export interface Question {
@@ -27,6 +28,7 @@ export interface Filter {
     rating: number,
     tags: string[],
     solvedByUser: boolean,
+    attemptedByUser: boolean,
     solvedCount: number
   }
 

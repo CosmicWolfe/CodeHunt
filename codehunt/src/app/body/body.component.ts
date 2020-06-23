@@ -22,7 +22,7 @@ export class BodyComponent implements OnInit {
     maxRating: 3500,
     tags: [],
     tagsTakenByOr: false,
-    solvedByUser: 0
+    relationToUser: 0
   };
 
   constructor(private httpClient: HttpClient) {}
@@ -83,12 +83,16 @@ export class BodyComponent implements OnInit {
         return false;
       }
       
-      if (filters.solvedByUser == 1) {
+      if (filters.relationToUser == 1) {
         if (question.solvedByUser) {
           return false;
         }
-      } else if (filters.solvedByUser == 2) {
+      } else if (filters.relationToUser == 2) {
         if (!question.solvedByUser) {
+          return false;
+        }
+      } else if (filters.relationToUser == 3) {
+        if (question.solvedByUser || !question.attemptedByUser) {
           return false;
         }
       }
