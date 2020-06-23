@@ -65,6 +65,15 @@ export class QuestionFiltersComponent implements OnInit {
     this.updateFilters();
   }
 
+  clearTags(): void {
+    this.currentFilters.tags = [];
+    for (let tag of this.allTags) {
+      tag.isActive = false;
+    }
+
+    this.updateFilters();
+  }
+
   setTakenByOr(): void {
     this.currentFilters.tagsTakenByOr = !this.currentFilters.tagsTakenByOr;
 
