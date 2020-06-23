@@ -35,8 +35,6 @@ export class BodyComponent implements OnInit {
         questions[questions.length - 1].tags = data[key].tags.slice(0);
       }
       this.userQuestions = questions;
-      console.log("oninit questions");
-      console.log(this.userQuestions);
       this.filteredUserQuestions = questions;
       this.userQuestionsSubscription.unsubscribe();
     });
@@ -50,17 +48,14 @@ export class BodyComponent implements OnInit {
 
   public submitUsername() {
     // check for valid username, then get userQuestions
-    console.log(this.username)
     this.userQuestionsSubscription.unsubscribe();
-    this.userQuestionsSubscription = this.httpClient.get('http://127.0.0.1:5002/problems/' +  this.username).subscribe(data => {
+    this.userQuestionsSubscription = this.httpClient.get('http://127.0.0.1:5002/problems/' +  (this.username ? this.username : "NoSubmissions")).subscribe(data => {
       let questions = [];
       for (let key in data) {
         questions.push(data[key]);
         questions[questions.length - 1].tags = data[key].tags.slice(0);
       }
       this.userQuestions = questions;
-      console.log("received userQuestions");
-      console.log(this.userQuestions);
       this.filterQuestions();
     });
   }
@@ -72,11 +67,6 @@ export class BodyComponent implements OnInit {
   public filterQuestions() {
     // filters the questions according to the filters, and userSubmissions
     let filters = this.currentFilters;
-    console.log("filters");
-    console.log(filters);
-
-    console.log("userQuestions before filter");
-    console.log(this.userQuestions);
     
     let filteredQuestions = this.userQuestions.filter((question: Question) => {
       if (question.rating < filters.minRating || question.rating > filters.maxRating) {
@@ -117,12 +107,6 @@ export class BodyComponent implements OnInit {
       }
       return true;
     });
-
-    console.log("filteredQuestions after filter");
-    console.log(filteredQuestions);
-
-    console.log("filteredQuestions after sort");
-    console.log(filteredQuestions);
 
     this.filteredUserQuestions = filteredQuestions;
   }
