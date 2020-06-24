@@ -3,7 +3,7 @@ import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, FormB
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ErrorStateMatcher} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-import { MatDivider } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Filter, FilterConstants, Tag, TagConstants } from '../app.constants';
 

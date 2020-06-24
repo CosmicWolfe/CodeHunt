@@ -1,7 +1,7 @@
 <form [formGroup]="filterForm">
-  <div fxLayout="column" fxLayoutAlign="start center" style="width: inherit !important;">
+  <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px" style="width: inherit !important;">
     <!-- Min and Max Rating Input -->
-    <div fxLayout="row" name="Rating Input" fxLayoutGap="10px">
+    <div fxLayout="row" name="Rating Input" fxLayoutGap="24px">
       <div name = "Minimum Rating Input">
         <mat-form-field>
           <mat-label>Minimum Difficulty</mat-label>
@@ -25,16 +25,15 @@
       </div>
     </div>
 
-    <div name = "Tags Input" fxLayout="column">
-      <div fxLayout="row" fxLayoutAlign="space-evenly">
-        <p class="FilterTitle">Tags</p>
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
-          Taken by OR
-          <mat-slide-toggle [checked]="currentFilters.tagsTakenByOr"
-                            (change)="setTakenByOr()">
-          </mat-slide-toggle>
-        </div>
-         <button mat-raised-button (click)="clearTags()">Clear Tags</button>
+    <mat-divider style="height: 1px !important; width: 90% !important;"></mat-divider>
+
+    <div name = "Tags Input" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="48px">
+        <mat-slide-toggle [checked]="currentFilters.tagsTakenByOr"
+                          (change)="setTakenByOr()">
+                          Tags taken by OR
+        </mat-slide-toggle>
+        <button mat-raised-button (click)="clearTags()">Clear Tags</button>
       </div>
 
       <div name="Tags Choices" fxLayout="row wrap" style="width: inherit !important;">
@@ -46,8 +45,9 @@
       </div>
     </div>
 
+    <mat-divider style="height: 1px !important; width: 90% !important;" [vertical]="false"></mat-divider>
+
     <div name = "SolvedBy Input">
-       <p>Solved By</p>
        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
           <mat-button-toggle [checked]="currentFilters.relationToUser == 0" (change)="setSolvedBy(0)">All</mat-button-toggle>
           <mat-button-toggle [checked]="currentFilters.relationToUser == 1" (change)="setSolvedBy(1)">Unsolved</mat-button-toggle>
@@ -56,11 +56,12 @@
        </mat-button-toggle-group>
     </div>
 
+    <mat-divider style="height: 1px !important; width: 90% !important;" [vertical]="false"></mat-divider>
+
     <div name="Submit">
         <button mat-raised-button [disabled]="!filterForm.valid" (click)="submitFilters()">Apply Filters</button>
     </div>
     
-
   </div>
 </form>
 
