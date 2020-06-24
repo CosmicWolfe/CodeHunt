@@ -65,7 +65,17 @@ export class BodyComponent implements OnInit {
 
   public filterQuestions() {
     // filters the questions according to the filters, and userSubmissions
-    let filters = this.currentFilters;
+    let filters : Filter = {} as Filter;
+    for (let x in this.currentFilters) {
+      filters[x] = this.currentFilters[x];
+    }
+    
+    if (!filters.maxRating) {
+      filters.maxRating = 3500;
+    }
+    if (!filters.minRating) {
+      filters.minRating = 0;
+    }
     
     let filteredQuestions = this.userQuestions.filter((question: Question) => {
       if (question.rating < filters.minRating || question.rating > filters.maxRating) {
