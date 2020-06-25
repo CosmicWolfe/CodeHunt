@@ -1,18 +1,20 @@
 <!--user selection and filter, maybe no need for component-->
 
-<div fxLayout="row" fxLayoutAlign="space-around start">
-    <div fxLayout="column" fxLayoutAlign="start start" style="flex-grow: 1 !important;">
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="36px" style="margin-left: 48px !important;">
-            <mat-form-field>
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username">
-            </mat-form-field>
+<div fxLayout="row" fxLayoutAlign="space-around start" style="background-color: #ebe8e8;">
+    <div style="padding: 16px 8px 16px 16px !important; flex-grow: 1 !important;">
+        <div fxLayout="column" fxLayoutAlign="start start" style="flex-grow: 1 !important; padding: 16px !important; background-color: white;">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="36px" style="margin-left: 48px !important;">
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username">
+                </mat-form-field>
 
-            <button mat-raised-button (click)="submitUsername()" style="height: 36px;">View Questions</button>
+                <button mat-raised-button (click)="submitUsername()" style="height: 36px;">View Questions</button>
+            </div>
+            <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
         </div>
-        <app-questions-table class="extendWidth" [questions]="filteredUserQuestions"></app-questions-table>
     </div>
-    <app-question-filters style="width: 35% !important; background-color: #ebe8e8; padding: 8px" (filters)="updateFilters($event)" (refresh)="filterQuestions()"></app-question-filters>
+    <app-question-filters style="width: 35% !important; padding: 16px 16px 16px 8px" (filters)="updateFilters($event)" (refresh)="filterQuestions()"></app-question-filters>
 </div>
 
 <!--other cool stuff maybe, graphs of rating, solved problems bar graph-->
