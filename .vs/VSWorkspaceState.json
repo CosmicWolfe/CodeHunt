@@ -11,6 +11,6 @@
     "\\codehunt\\src\\app\\questions-table",
     "\\codehunt\\src\\assets"
   ],
-  "SelectedNode": "\\codehunt\\src\\app\\question-filters\\question-filters.component.html",
+  "SelectedNode": "\\codehunt\\src\\app\\body\\body.component.ts",
   "PreviewInSolutionExplorer": false
 }
