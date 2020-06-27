@@ -26,15 +26,9 @@ export class FilterConstants {
 
 export interface Question {
   contestId: number,
-  problemsetName: string,
   problemId: string,
   index: string,
   name: string,
-  /**
-   * ENUM: PROGRAMMING, QUESTION
-   */
-  type: string,
-  points: number,
   rating: number,
   tags: string[],
   solvedByUser: boolean,
