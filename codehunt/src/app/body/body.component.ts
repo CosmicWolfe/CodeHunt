@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -12,7 +12,8 @@ import { CodeforcesService } from '../services/codeforces.service';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })
-export class BodyComponent implements OnInit {
+export class BodyComponent implements OnInit, OnChanges {
+  @Input() chosenSite : string;
   username: string;
   userQuestions: Question[];
   userQuestionsSub: Subscription;
@@ -34,10 +35,33 @@ export class BodyComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    if (changes.chosenSite) {
+      if (this.userQuestionsSub) {
+        this.userQuestionsSub.unsubscribe();
+      }
+      this.subscribeToUserQuestions();
+    }
+  }
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.userQuestionsSub.unsubscribe();
+  }
+
+  private subscribeToUserQuestions() {
+    switch (this.chosenSite) {
+      case 'codeforces':
+        this.codeforcesService.initializeService();
+        this.userQuestionsSub = this.codeforcesService.userQuestions.subscribe(userQuestions => {
+          this.userQuestions = userQuestions.slice();
+          this.filterQuestions();
+        });
+        break;
+    }
   }
 
   public submitUsername() {

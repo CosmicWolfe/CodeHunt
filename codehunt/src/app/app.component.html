@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="start center">
-  <app-header class="extendWidth" style="padding: 16px 0px 16px 0px !important; background-color: black;"></app-header>
-  <app-body class="inheritWidth"></app-body>
+  <app-header class="extendWidth" style="padding: 16px 0px 16px 0px !important; background-color: black;" (setChosenSiteEvent)="setChosenSite($event)"></app-header>
+  <app-body class="inheritWidth" [chosenSite]="chosenSite"></app-body>
   <!--footer ? -->
 </div>
 <router-outlet></router-outlet>

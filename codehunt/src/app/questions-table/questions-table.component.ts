@@ -79,7 +79,6 @@ export class QuestionsTableComponent implements OnInit {
   }
 
   ngOnChanges(changes : SimpleChange): void {
-    console.log(changes);
     this.dataSource.data = this.questions;
     this.dataSource.paginator = this.paginator;
   }
