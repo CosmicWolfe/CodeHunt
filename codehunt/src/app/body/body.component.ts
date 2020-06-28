@@ -31,8 +31,10 @@ export class BodyComponent implements OnInit, OnChanges {
 
     this.codeforcesService.initializeService();
     this.userQuestionsSub = this.codeforcesService.userQuestions.subscribe(userQuestions => {
-      this.userQuestions = userQuestions.slice();
-      this.filterQuestions();
+      if (userQuestions) {
+        this.userQuestions = userQuestions.slice();
+        this.filterQuestions();
+      }
     });
   }
 

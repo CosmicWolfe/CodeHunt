@@ -1,4 +1,4 @@
-<div style="font-size: 36px; color: #ff8f00; padding-right: 24px;" fxLayout="row-reverse" fxLayoutGap="16px">
+<div style="padding-right: 24px;" fxLayout="row-reverse" fxLayoutAlign="start center" fxLayoutGap="16px">
     <span class="title">CodeHunt</span>
     <img src="./../../assets/uvaoj.png" [class.chosen-button-icon]="chosenSite == 'uhunt'" [class.button-icon]="chosenSite != 'uhunt'" (click)="setChosenSite('uhunt')">
     <img src="./../../assets/codeforces.png" [class.chosen-button-icon]="chosenSite == 'codeforces'" [class.button-icon]="chosenSite != 'codeforces'" (click)="setChosenSite('codeforces')">

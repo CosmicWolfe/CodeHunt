@@ -6,15 +6,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() chosenSite : string;
+  chosenSite : string;
   @Output() setChosenSiteEvent = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setChosenSite('codeforces');
   }
 
   setChosenSite(newChosenSite : string) {
+    this.chosenSite = newChosenSite;
     this.setChosenSiteEvent.emit(newChosenSite);
   }
 }

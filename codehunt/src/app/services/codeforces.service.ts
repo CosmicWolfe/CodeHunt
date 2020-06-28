@@ -12,8 +12,6 @@ export class CodeforcesService {
 
   private userQuestionsSource = new BehaviorSubject<Array<Question>>([]);
   public userQuestions = this.userQuestionsSource.asObservable();
-  private testSrc = new BehaviorSubject<any>(null);
-  public test = this.testSrc.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 

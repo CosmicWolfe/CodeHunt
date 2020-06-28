@@ -2,9 +2,22 @@
     position: absolute !important;
     left: 50% !important;
     transform: translate(-50%);
+    font-size: 36px;
+    color: #ff8f00; 
+}
+
+.chosen-button-icon {
+    height: 20px;
+    cursor: pointer;
+    border-style: solid !important;
+    border-color: orange !important;
+    border-width: 2px !important;
+    border-radius: 4px !important;
+    padding: 2px !important;
 }
 
 .button-icon {
     height: 20px;
     cursor: pointer;
+    padding: 4px !important;
 }
