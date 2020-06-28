@@ -32,32 +32,41 @@ export class CodeforcesService {
       value["attemptedByUser"] = false;
     });
 
-   let url = "https://codeforces.com/api/user.status?handle=" + (this.username ? this.username : "NoSubmissions");
+    if (this.username) {
+      let url = "https://codeforces.com/api/user.status?handle=" + this.username;
 
-   let resultSub = this.httpClient.get(url).subscribe(data => {
-     for (let idx in data["result"]) {
-       let submission = data["result"][idx];
-       let problem = submission["problem"];
-       let contestId = (problem["contestId"] ? String(problem["contestId"]) : "X");
-       let index = contestId + problem["index"]
+      let resultSub = this.httpClient.get(url).subscribe(data => {
+         for (let idx in data["result"]) {
+           let submission = data["result"][idx];
+           let problem = submission["problem"];
+           let contestId = (problem["contestId"] ? String(problem["contestId"]) : "X");
+           let index = contestId + problem["index"]
 
-       if (this.problems.has(index)) {
-         this.problems.get(index)["attemptedByUser"] = true;
-         if (submission["verdict"] == "OK") {
-           this.problems.get(index)["solvedByUser"] = true;
+           if (this.problems.has(index)) {
+             this.problems.get(index)["attemptedByUser"] = true;
+             if (submission["verdict"] == "OK") {
+               this.problems.get(index)["solvedByUser"] = true;
+             }
+           }
          }
-       }
-     }
 
-     let questions = [];
-     this.problems.forEach((value, key, map) => {
-       questions.push(value);
-       questions[questions.length - 1].tags = value["tags"].slice();
-     });
+         let questions = [];
+         this.problems.forEach((value, key, map) => {
+           questions.push(value);
+           questions[questions.length - 1].tags = value["tags"].slice();
+         });
 
-     this.userQuestionsSource.next(questions);
-     resultSub.unsubscribe();
-   });
+         this.userQuestionsSource.next(questions);
+         resultSub.unsubscribe();
+      });
+     } else {
+       let questions = [];
+       this.problems.forEach((value, key, map) => {
+         questions.push(value);
+         questions[questions.length - 1].tags = value["tags"].slice();
+       });
+       this.userQuestionsSource.next(questions);
+    }
   }
 
   private refreshProblems() {

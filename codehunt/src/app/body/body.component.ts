@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Subscription } from 'rxjs';
 import { Question, Filter, FilterConstants } from '../app.constants';
 import { CodeforcesService } from '../services/codeforces.service';
+import { UhuntService } from '../services/uhunt.service';
 
 @Component({
   selector: 'app-body',
@@ -20,7 +21,7 @@ export class BodyComponent implements OnInit, OnChanges {
   filteredUserQuestions: Question[];
   currentFilters: Filter;
 
-  constructor(private codeforcesService: CodeforcesService) {}
+  constructor(private codeforcesService: CodeforcesService, private uhuntService: UhuntService) {}
 
   ngOnInit(): void {
     this.currentFilters = {} as Filter;
@@ -61,11 +62,26 @@ export class BodyComponent implements OnInit, OnChanges {
           this.filterQuestions();
         });
         break;
+      case 'uhunt':
+        this.uhuntService.initializeService();
+        this.userQuestionsSub = this.uhuntService.userQuestions.subscribe(userQuestions => {
+          this.userQuestions = userQuestions.slice();
+          this.filterQuestions();
+        });
+        break;
     }
   }
 
   public submitUsername() {
-    this.codeforcesService.changeUsername(this.username);
+    switch (this.chosenSite) {
+      case 'codeforces':
+        this.codeforcesService.changeUsername(this.username);
+        break;
+      case 'uhunt':
+        this.uhuntService.changeUsername(this.username);
+        break;
+    }
+    
   }
 
   public updateFilters(filter : Filter) {

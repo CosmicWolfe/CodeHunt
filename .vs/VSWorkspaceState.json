@@ -8,9 +8,8 @@
     "\\codehunt\\src\\app\\body",
     "\\codehunt\\src\\app\\header",
     "\\codehunt\\src\\app\\question-filters",
-    "\\codehunt\\src\\app\\questions-table",
+    "\\codehunt\\src\\app\\services",
     "\\codehunt\\src\\assets"
   ],
-  "SelectedNode": "\\codehunt\\src\\app\\body\\body.component.ts",
   "PreviewInSolutionExplorer": false
 }
