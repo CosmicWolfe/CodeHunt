@@ -86,7 +86,7 @@ export class UhuntService {
         this.problems.set(problemId, {
           index : String(index),
           problemId : problemId,
-          contestId : 0,
+          contestId : index,
           name : name,
           rating : 0,
           solvedByUser : false,
