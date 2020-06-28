@@ -6,7 +6,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="36px" style="margin-left: 48px !important;">
                 <mat-form-field>
                     <mat-label>Username</mat-label>
-                    <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username">
+                    <input matInput placeholder="Enter Codeforces username" [(ngModel)]="username" (keydown.enter)="submitUsername()">
                 </mat-form-field>
 
                 <button mat-raised-button (click)="submitUsername()" style="height: 36px;">View Questions</button>
